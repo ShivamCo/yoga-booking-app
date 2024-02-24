@@ -20,7 +20,7 @@ npm run dev
 
 Backend Install
 ```bash
-cd client
+cd server
 npm install
 ```
 Backend - Start Server
