@@ -20,7 +20,7 @@ const RegisterPage = () => {
 
         try{
                    
-            const userData = await axios.post('http://localhost:5000/api/register', userDetails)
+            const userData = await axios.post('https://yoga-booking-app-p551.onrender.com/api/register', userDetails)
             localStorage.setItem('user', (userData.data.token))
             localStorage.setItem('userID', (userData.data.userID) )
             navigate(-1)

@@ -5,8 +5,13 @@ const YogaCard = (classData) => {
 
     const handleJoinNow = async (event) => {
 
-        const {data} = await axios.post('http://localhost:5000/api/add-class', {'userID': localStorage.getItem('userID'), 'classID': event.target.value})
+        if( localStorage.getItem('userID')){
+        const {data} = await axios.post('https://yoga-booking-app-p551.onrender.com/api/add-class', {'userID': localStorage.getItem('userID'), 'classID': event.target.value})
         alert(data.message)
+        }
+
+        alert('Please Login!')
+        
     }
 
     return (

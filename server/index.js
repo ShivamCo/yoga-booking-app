@@ -27,6 +27,14 @@ app.use(bodyParser.json())
 //MongoDB Connection
 mongoose.connect(MONGO_DB_URL);
 
+//Awake
+const RandomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * 10);
+    return(randomNumber)
+};
+
+
+setInterval(RandomNumber, 9*60*1000);
 
 //Setup Routes
 app.use("/api", AddClass)

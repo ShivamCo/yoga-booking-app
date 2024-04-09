@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../components/getData.jsx";
 
 import YogaCard from "../components/YogaCard";
+import LoadinScreen from "../components/LoadinScreen.jsx";
 
 const ExplorePage = () => {
 
@@ -12,13 +13,17 @@ const ExplorePage = () => {
         "Price": "All"
     });
 
+    const [isLoading, setIsLoading] = useState(false)
+
     
     const [classData, setClassData] = useState()
 
     const getData = async () => {
 
         try {
-            const classData = await axios.post("http://localhost:5000/api/get-classes", filterData)
+            setIsLoading(true)
+            const classData = await axios.post("https://yoga-booking-app-p551.onrender.com/api/get-classes", filterData)
+            setIsLoading(false)
             setClassData(classData.data)
 
         } catch (error) {
@@ -45,6 +50,9 @@ const ExplorePage = () => {
     return (
 
         <div className="mx-auto   max-w-screen-2xl ">
+            {
+                isLoading && <LoadinScreen />
+            }
             <main className="grid w-full h-screen z-10 gap-y-10 px-2 pb-20 mt-2 ">
                 {/* <button onClick={() => SetShowFilter(!showFilter)} type="button" className=" flex shadow-md w-fit h-fit p-2 px-4 rounded-xl bg-green-500 justify-center content-center mb-2 font-medium text-white " >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -85,7 +93,7 @@ const ExplorePage = () => {
                             <h2 className=" text-3xl font-semibold underline underline-offset-4 mb-4 text-teal-900 text-center " >Filters</h2>
                             {/* Level */}
 
-                            <form className=" w-48 mx-auto pr-4 ">
+                            <form className=" w-48  mx-auto  pr-4 ">
 
                                 <label className="block mt-2 mb-2 text-xl pl-2 font-medium text-slate-700 dark:text-white">Level</label>
                                 <select name="Level" onChange={handleChanges} className="block w-full mx-2 p-2  text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

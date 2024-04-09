@@ -10,8 +10,8 @@ const EnrolledCards = (classData) => {
     
 
     const handleRemove = async(event) =>{
-        await axios.post('http://localhost:5000/api/remove-class', {'userID': localStorage.getItem('userID') , 'classID': event.target.value })
-        navigate("/user-profile")
+        await axios.post('https://yoga-booking-app-p551.onrender.com/api/remove-class', {'userID': localStorage.getItem('userID') , 'classID': event.target.value })
+        navigate(0)
     }
 
     useEffect(()=>{

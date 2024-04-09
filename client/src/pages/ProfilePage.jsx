@@ -17,14 +17,14 @@ const ProfilePage = () => {
 
 
 
-        axios.post("http://localhost:5000/api/get-user", ({ 'userID': userID }))
+        axios.post("https://yoga-booking-app-p551.onrender.com/api/get-user", ({ 'userID': userID }))
             .then(response => {
 
                 setUsersData(response.data);
                 const necessaryData = response;
                 
 
-                axios.post("http://localhost:5000/api/get-enrolled-classes", ({ 'classes': necessaryData.data.classes }))
+                axios.post("https://yoga-booking-app-p551.onrender.com/api/get-enrolled-classes", ({ 'classes': necessaryData.data.classes }))
                     .then(response => {
 
                         setYogaClassesData(response.data);

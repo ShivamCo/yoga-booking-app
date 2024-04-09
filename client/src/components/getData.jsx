@@ -4,7 +4,7 @@ import axios from "axios"
 export const getData = async (filterData) =>{
 
     try{
-        const classData = await axios.post("http://localhost:5000/api/get-classes", filterData)
+        const classData = await axios.post("https://yoga-booking-app-p551.onrender.com/api/get-classes", filterData)
         return(classData)
         // console.log(
         //     {

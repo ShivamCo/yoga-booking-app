@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import YogaCard from "../components/YogaCard";
 import axios from "axios";
+import LoadinScreen from "../components/LoadinScreen";
 
 const HomePage = () => {
 
     const [classData, setClassData] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
     const getData = async () => {
 
         try {
-            const classData = await axios.post("http://localhost:5000/api/get-classes", ({ 'Level': 'All', 'Price': 'All' }))
+            setIsLoading(true)
+            const classData = await axios.post("https://yoga-booking-app-p551.onrender.com/api/get-classes", ({ 'Level': 'All', 'Price': 'All' }))
             setClassData(classData.data)
-
+            setIsLoading(false)
         } catch (error) {
             console.log(error)
         }
@@ -26,6 +29,9 @@ const HomePage = () => {
 
     return (
         <div className="mx-auto max-w-screen-2xl ">
+            {
+                isLoading && <LoadinScreen />
+            }
             <div className="relative h-64 rounded-b-lg bg-cover overflow-hidden bg-center bg-no-repeat shadow-lg">
 
                 <img src="https://wallpapercave.com/wp/wp3157183.jpg" className="object-cover sm:-mt-64 " />
