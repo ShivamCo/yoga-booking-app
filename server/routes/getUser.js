@@ -89,6 +89,26 @@ router.post("/remove-class", async (req, res) => {
 
 })
 
+router.post("/awake", async (req, res) => {
+
+    try {
+  
+      const response = await UserModel.findOne({email: "sdasdfasdfasdfsa"})
+      
+      res.json(response)
+      console.log(response)
+  
+    } catch (error) {
+  
+      console.log(error.message)
+  
+    }
+  
+  })
+
+
+
+
 export { router as GetUser }
 
 

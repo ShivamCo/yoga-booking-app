@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import axios from 'axios'
 
 import 'dotenv/config';
 
@@ -28,13 +29,18 @@ app.use(bodyParser.json())
 mongoose.connect(MONGO_DB_URL);
 
 //Awake
-const RandomNumber = () => {
-    const randomNumber = Math.floor(Math.random() * 10);
-    return(randomNumber)
-};
+const Awake = async () => {
 
+    try {
+        const response = await axios.post("https://yoga-booking-app-p551.onrender.com/api/awake")
+        console.log(response.data)
+    } catch (error) {
+        console.log(error.message)
+    }
 
-setInterval(RandomNumber, 9*60*1000);
+}
+
+setInterval(Awake, 9*60*1000);
 
 //Setup Routes
 app.use("/api", AddClass)
