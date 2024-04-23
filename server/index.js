@@ -15,7 +15,7 @@ import { GetUser } from './routes/getUser.js';
 
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 const MONGO_DB_URL = process.env.MONGO_DB_URL
 
 //CORS
@@ -29,18 +29,18 @@ app.use(bodyParser.json())
 mongoose.connect(MONGO_DB_URL);
 
 //Awake
-const Awake = async () => {
+// const Awake = async () => {
 
-    try {
-        const response = await axios.post("https://yoga-booking-app-p551.onrender.com/api/awake")
-        console.log(response.data)
-    } catch (error) {
-        console.log(error.message)
-    }
+//     try {
+//         const response = await axios.post("http://localhost:4000/api/awake")
+//         console.log(response.data)
+//     } catch (error) {
+//         console.log(error.message)
+//     }
 
-}
+// }
 
-setInterval(Awake, 9*60*1000);
+// setInterval(Awake, 9*60*1000);
 
 //Setup Routes
 app.use("/api", AddClass)
